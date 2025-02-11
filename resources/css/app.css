@@ -19,6 +19,10 @@ html {
   overflow-x: hidden;
 }
 
+body{
+    background-color: #F0F7F8;
+}
+
 .left-column {
     position: relative; 
     width: 65%;
@@ -105,5 +109,134 @@ h1 {
 font-size: 1.8rem; 
 }
 }
+
+/* Sidebar Nav*/
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 95px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: #002351;
+    padding: 30px 10px;
+    border-radius: 0px 10px 10px 0px;
+    transition: all 0.4s;
+}
+
+.sidebar:hover{
+    width: 265px;
+}
+
+.row{
+    display: flex;
+}
+
+
+.sidebar-header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 1.5rem;
+}
+
+.sidebar-header img{
+    width: 4.5rem;
+}
+
+.sidebar-header .column .logo-icon{
+    margin-right: 10px;
+    position: fixed;
+}
+
+.sidebar-header .column .logo-text{
+    width: 10rem;
+    margin-left: 79px;
+}
+
+.sidebar-header .logotext{
+    display: hidden;
+}
+
+.sidebar-links{
+    list-style: none;
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-right: 10px;
+    height: 80%;
+}
+
+.sidebar-links li span{
+    margin-right: 10px;
+}
+
+.sidebar-links li a{
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+    color: #fff;
+    font-weight: 400;
+    padding: 10px 10px;
+    white-space: nowrap;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.sidebar-links li a:hover{
+    background: #ffffff2d;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.sidebar-links li a.active {
+    background: #fff; 
+    color: #002351;
+    border-radius: 4px;    
+    font-weight: 600;      
+}   
+
+
+.user-account{
+    margin-top: auto;
+    padding: 12px 10px;
+    margin-left: 5px;
+    overflow-x: hidden;
+}
+
+.user-account .user-profile{
+    display: flex;
+    align-items: center;
+    color: #e5dede;
+}
+
+.user-profile img{
+    width: 45px;
+    margin-left: 10px;
+}
+
+.user-profile h3{
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.user-profile span{
+    font-size: 0.775rem;
+}
+
+.user-detail{
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.sidebar:hover .user-account{
+    background:  #ffffff2d;
+    border-radius: 4px;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
 
 
