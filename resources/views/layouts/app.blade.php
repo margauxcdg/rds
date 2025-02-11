@@ -35,12 +35,12 @@
 
 <style>
     .sidebar-layout{
-        margin-right: 5rem;
+        margin-right: 5.5rem;
         transition: 0.4s;
     }
 
     .sidebar-layout:hover{
-        margin-right: 15rem;
+        margin-right: 16rem;
     }
 
 
