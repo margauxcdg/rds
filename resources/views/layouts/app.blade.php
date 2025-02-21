@@ -22,12 +22,18 @@
     <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900 flex">
         <!-- Side Bar Nav -->
+        
         <div class="sidebar-layout bg-white dark:bg-gray-800">
-            @include('layouts.sidebar-nav')
+            @if (auth()->check() && auth()->user()->email === 'nocs_services@gbox.adnu.edu.ph')
+                @include('layouts.admin-sidebar')
+            @else
+                @include('layouts.sidebar-nav')    
+             @endif
         </div>
+
         
         <!-- Page Content -->
-        <div class="flex-1 p-6">
+        <div class="flex-1 p-6 vh-100">
             {{ $slot }}
         </div>
     </div>

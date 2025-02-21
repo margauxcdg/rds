@@ -14,6 +14,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 html {
   overflow-x: hidden;
@@ -148,13 +149,13 @@ font-size: 1.8rem;
 }
 
 .sidebar-header .column .logo-icon{
-    margin-right: 10px;
+    margin-right: 15px;
     position: fixed;
 }
 
 .sidebar-header .column .logo-text{
     width: 10rem;
-    margin-left: 79px;
+    margin-left: 85px;
 }
 
 .sidebar-header .logotext{
