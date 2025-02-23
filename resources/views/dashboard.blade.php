@@ -6,7 +6,13 @@
     </x-slot>
 
     <div class="p-6" x-data="{ open: false }">
-        @include('form.request-form')
+        
+       @guest 
+            @include('modal.not-auth')
+        @endguest
+        @auth
+            @include('form.request-form')
+        @endauth
 
         <div class="calendar">
             @include('layouts.calendar')

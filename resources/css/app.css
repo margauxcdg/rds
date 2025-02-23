@@ -239,5 +239,20 @@ font-size: 1.8rem;
     overflow-y:hidden;
 }
 
+.dropup-menu {
+    width: 15rem;
+}
+
+/* Forms */
+  .form-container {
+        width: 30rem;
+        z-index: 50;
+        padding: 3rem;
+    }
+
+    .form-header {
+        font-size: 1.5rem;
+    }
+
 
 
