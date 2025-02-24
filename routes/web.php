@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RequestController;
 
 Route::get('/', function () {
     return view('dashboard'); 
@@ -21,9 +21,14 @@ Route::get('/history', function () {
     return view('history');
 })->middleware(['auth', 'verified'])->name('history');
 
-Route::get('/requests', function () {
-    return view('admin.admin-requests'); 
-})->middleware(['auth', 'verified'])->name('requests');
+
+Route::get('requests', [RequestController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('requests');
+
+Route::post('/requests/store', [RequestController::class, 'store'])->name('requests.store');
+
+
 
 Route::get('/requests-details', function () {
     return view('admin.request-details'); 
@@ -36,5 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 require __DIR__.'/auth.php';

@@ -53,7 +53,6 @@
                 
                 <ul class="text-sm text-gray-700 h-full flex flex-col justify-between">
                     @guest
-                    <!-- If the user is not logged in -->
                     <li class="px-4 py-2 hover:bg-gray-100">
                         <a href="{{ route('login') }}" 
                             class="flex justify-between items-center w-full rounded-md text-black cursor-pointer ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
@@ -65,7 +64,6 @@
                     @endguest
 
                     @auth
-                    <!-- If the user is logged in -->
                     <li class="px-4 py-2 hover:bg-gray-100">
                         <a href="#" 
                             class="flex justify-between items-center w-full rounded-md text-black cursor-pointer ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
