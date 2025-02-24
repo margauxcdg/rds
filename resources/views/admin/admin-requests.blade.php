@@ -47,10 +47,10 @@
 
         @php
             $statusColors = [
-                'Open' => 'text-green-600 bg-green-100', // Green for Open
-                'In Progress' => 'text-yellow-600 bg-yellow-100', // Yellow for In Progress
-                'Closed' => 'text-gray-600 bg-gray-200', // Gray for Closed
-                'Declined' => 'text-red-600 bg-red-100', // Red for Declined
+                'Open' => 'text-green-600 bg-green-100', 
+                'In Progress' => 'text-yellow-600 bg-yellow-100', 
+                'Closed' => 'text-gray-600 bg-gray-200', 
+                'Declined' => 'text-red-600 bg-red-100', 
             ];
         @endphp
 
