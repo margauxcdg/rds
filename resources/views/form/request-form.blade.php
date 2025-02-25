@@ -79,7 +79,7 @@
         const purposeSelect = document.getElementById('purpose');
         const otherInputDiv = document.getElementById('other_purpose');
 
-        if (purposeSelect.value === 'others') {
+        if (purposeSelect.value === 'Others') {
             otherInputDiv.classList.remove('hidden');
         } else {
             otherInputDiv.classList.add('hidden');

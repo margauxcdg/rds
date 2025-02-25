@@ -55,7 +55,7 @@ body{
     object-fit: cover;
 }
 
-.form-container {
+.auth-container {
     width: 100%;
     max-width: 45rem;
     padding: 4rem;
@@ -85,7 +85,7 @@ body{
         height: 40vh; 
     }
 
-    .form-container {
+    .auth-container {
         max-width: 100%;
         padding: 1.5rem;
         box-shadow: none; 

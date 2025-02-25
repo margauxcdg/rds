@@ -8,7 +8,7 @@
 
         <!-- Right Column -->
         <div class="right-column">
-            <form method="POST" action="{{ route('login') }}" class="form-container">
+            <form method="POST" action="{{ route('login') }}" class="auth-container">
                 @csrf
 
                 <h1>Hello Again!</h1>

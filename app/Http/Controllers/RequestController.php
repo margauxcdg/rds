@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Requests; 
+use App\Models\User; 
+use App\Mail\NewRequestNotification;
+use Illuminate\Support\Facades\Mail;
 
 class RequestController extends Controller
 {
-    public function index()
-    {
+    public function index(){
       
         $requests = Requests::where('status', 'Open')->get(); 
 
@@ -16,8 +18,7 @@ class RequestController extends Controller
     }
 
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $validated = $request->validate([
             'representative_name' => 'required|string',
             'event_name' => 'required|string',
@@ -30,6 +31,10 @@ class RequestController extends Controller
             'location' => 'required|string',
         ]);
 
+        $requestedBy = auth()->id(); 
+        $user = User::find($requestedBy);
+        $userName = $user ? $user->name : 'Unknown User'; 
+
         Requests::create([
             'representative_name' => $validated['representative_name'], 
             'event_name' => $validated['event_name'],
@@ -40,10 +45,17 @@ class RequestController extends Controller
             'setup_date' => $validated['setup_date'] ?? null,
             'setup_time' => $validated['setup_time'] ?? null,
             'location' => $validated['location'],
-            'requested_by' => auth()->id(), 
+            'requested_by' => $requestedBy, 
             'status' => 'Open',
         ]);
 
+        $requestData = $validated;
+        $requestData['requested_by'] = $userName;
+
+        //change this to nocs_services@gbox.adnu.edu.ph
+        Mail::to('mcadag@gbox.adnu.edu.ph')->send(new NewRequestNotification($requestData));
+
         return redirect()->back()->with('success', 'Request submitted successfully!');
     }
+
 }
