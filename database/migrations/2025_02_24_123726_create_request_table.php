@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('setup_date')->nullable();
             $table->time('setup_time')->nullable();
             $table->string('location');
+            $table->integer('users');
             $table->foreignId('requested_by')->constrained('users')->onDelete('cascade'); 
             $table->enum('status', ['Open', 'In Progress', 'Closed', 'Declined'])->default('Open');
             $table->timestamps();

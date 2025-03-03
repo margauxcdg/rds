@@ -29,6 +29,7 @@ class RequestController extends Controller
             'setup_date' => 'nullable|date',
             'setup_time' => 'nullable',
             'location' => 'required|string',
+            'users' => 'required|integer'
         ]);
 
         $requestedBy = auth()->id(); 
@@ -45,6 +46,7 @@ class RequestController extends Controller
             'setup_date' => $validated['setup_date'] ?? null,
             'setup_time' => $validated['setup_time'] ?? null,
             'location' => $validated['location'],
+            'users' => $validated['users'],
             'requested_by' => $requestedBy, 
             'status' => 'Open',
         ]);

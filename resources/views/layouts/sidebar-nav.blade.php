@@ -61,6 +61,7 @@
                             <span class="material-symbols-outlined">account_circle</span>
                         </a>
                     </li>
+                   
                     @endguest
 
                     @auth

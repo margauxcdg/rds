@@ -22,6 +22,7 @@ class Requests extends Model
         'setup_date',
         'setup_time',
         'location',
+        'users',
         'requested_by',
         'status',
     ];
