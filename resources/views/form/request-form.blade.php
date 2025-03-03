@@ -58,9 +58,14 @@
                 </div>
             </div>
 
-            <div class="mb-6">
+            <div class="mb-4">
                 <x-input-label for="location" :value="__('Location')" />
                 <x-text-input id="location" class="block mt-1 w-full" type="text" name="location" required />
+            </div>
+
+            <div class="mb-6">
+                <x-input-label for="users" :value="__('No. of Users')" />
+                <x-text-input id="users" class="block mt-1 w-full" type="number" name="users" required />
             </div>
 
             <div class="mb-4">
