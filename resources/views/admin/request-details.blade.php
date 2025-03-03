@@ -13,8 +13,8 @@
     <div class="request-details p-5 rounded-lg bg-white">
         <div class="request-header flex items-center justify-between w-full mb-3">
             <div class="mt-4">
-                <h2 class="text-2xl font-semibold">Name of the Requester</h2> 
-                <p class="text-gray-600">Name of Office</p>
+                <h2 class="text-3xl font-semibold mb-2">President's Office</h2> 
+                <p class="text-2xl text-gray-600">John Smith</p>
             </div>
             <div class="flex gap-4 items-center">
                 <x-primary-button style="background-color: #12D707; color: white; width: 100px; height: 40px;">
@@ -34,20 +34,83 @@
 
         <div class="request-information flex justify-between pt-3">
             <div class="left-col-info">
-                <p class="header-text font-semibold mb-3">Name of Event:</p>
-                <p class ="detail-text mb-5">Name of Event</p>
-                <p class="header-text font-semibold mb-3">Purpose of the Event:</p>
-                <p class ="detail-text mb-5">Purpose of the Event</p>
-                <p class="header-text font-semibold mb-3">Location:</p>
-                <p class ="detail-text">Location</p>
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-gray-600">event</span>
+                    <div>
+                        <p class="header-text font-semibold mb-1">Name of Event:</p>
+                        <p class="detail-text">Lorem ipsum dolor sit amet</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-gray-600">event_available</span>
+                    <div>
+                        <p class="header-text font-semibold mb-1">Purpose of the Event:</p>
+                        <p class="detail-text">Lorem ipsum dolor sit amet</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-gray-600">calendar_clock</span>
+                    <div>
+                        <p class="header-text font-semibold mb-1">Date of Event:</p>
+                        <p class="detail-text">March 3-5, 2025</p>
+                    </div>
+                </div>
+
+               
             </div>
             <div class="right-col-info">
-                <p class="header-text font-semibold mb-3">Date of Event:</p>
-                <p class ="detail-text mb-5">March 1-5, 2025</p>
-                <p class="header-text font-semibold mb-3">Request Set up Date:</p>
-                <p class ="detail-text mb-5">March 1, 2025 | 8:00 A.M.</p>
-                <p class="header-text font-semibold mb-3">Remarks:</p>
-                <p class ="detail-text">Remarks</p>
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-gray-600">location_on</span>
+                    <div>
+                        <p class="header-text font-semibold mb-1">Location:</p>
+                        <p class="detail-text">Lorem ipsum dolor sit amet</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-gray-600">group</span>
+                    <div>
+                        <p class="header-text font-semibold mb-1">No. of Users:</p>
+                        <p class="detail-text">60 users</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-gray-600">calendar_clock</span>
+                    <div>
+                        <p class="header-text font-semibold mb-1">Request Set-up Date:</p>
+                        <p class="detail-text">March 3, 2025 | 12: 00 nn</p>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+
+        <hr class="mb-4 mt-4">
+        <p class="header-text font-semibold mb-1">Deployment Information</p>
+        <div class="request-information flex justify-between pt-3">
+            <div class="left-col-info">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-gray-600">manage_accounts</span>
+                    <div>
+                        <p class="header-text font-semibold mb-1">Name of Event:</p>
+                        <p class="detail-text">Lorem ipsum dolor sit amet</p>
+                    </div>
+                </div>
+
+           
+               
+            </div>
+            <div class="right-col-info">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-gray-600">home_repair_service</span>
+                    <div>
+                        <p class="header-text font-semibold mb-1">Location:</p>
+                        <p class="detail-text">Lorem ipsum dolor sit amet</p>
+                    </div>
+                </div>
+               
+              
             </div>
         </div>
     </div>
@@ -89,11 +152,11 @@
     }
 
     .header-text{
-        font-size: 1.25rem;
+        font-size: 1.5rem;
     }
 
     .detail-text{
-        font-size: 1.10rem;
+        font-size: 1.5rem;
         color:#404040;
     }
 </style>
