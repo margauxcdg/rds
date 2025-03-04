@@ -59,7 +59,7 @@
         <div class="row flex justify-between items-center space-x-4 p-2">
             <div class="col w-1/6"><p class="text-gray-600 text-center">#{{ $request->id }}</p></div>
             <div class="col w-2/6 justify-center flex">
-                <a href="{{ route('request-details', ['id' => $request->id]) }}" class="text-gray-600 text-center">
+                <a href="{{ route('request-details.show', $request->id) }}" class="text-gray-600 text-center">
                     {{ $request->event_name }}
                 </a>
             </div>

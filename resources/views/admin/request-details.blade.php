@@ -10,16 +10,23 @@
         </div>
     </div>
 
+  
     <div class="request-details p-5 rounded-lg bg-white">
         <div class="request-header flex items-center justify-between w-full mb-3">
             <div class="mt-4">
-                <h2 class="text-3xl font-semibold mb-2">President's Office</h2> 
-                <p class="text-2xl text-gray-600">John Smith</p>
+                <h2 class="text-3xl font-semibold mb-2">{{ $request->user->name}}</h2> 
+                <p class="text-2xl text-gray-600">{{ $request->representative_name }}</p>
             </div>
             <div class="flex gap-4 items-center">
-                <x-primary-button style="background-color: #12D707; color: white; width: 100px; height: 40px;">
-                    {{ __('Accept') }}
-                </x-primary-button>
+                <div x-data="{open:false}">
+                @include('form.deployment-form')
+                    <x-primary-button @click="open = true" style="background-color: #12D707; color: white; width: 100px; height: 40px;">
+                        {{ __('Accept') }}
+                    </x-primary-button>
+                </div>
+
+               
+                
                 <div x-data="{ open: false}">
                 @include('form.decline-form')
                     <x-primary-button @click="open = true" style="background-color: #D7070B; color: white; width: 100px; height: 40px;">
@@ -38,7 +45,7 @@
                     <span class="material-symbols-outlined text-gray-600">event</span>
                     <div>
                         <p class="header-text font-semibold mb-1">Name of Event:</p>
-                        <p class="detail-text">Lorem ipsum dolor sit amet</p>
+                        <p class="detail-text">{{ $request->event_name }}</p>
                     </div>
                 </div>
 
@@ -46,7 +53,7 @@
                     <span class="material-symbols-outlined text-gray-600">event_available</span>
                     <div>
                         <p class="header-text font-semibold mb-1">Purpose of the Event:</p>
-                        <p class="detail-text">Lorem ipsum dolor sit amet</p>
+                        <p class="detail-text">{{ $request->purpose }}</p>
                     </div>
                 </div>
 
@@ -54,7 +61,7 @@
                     <span class="material-symbols-outlined text-gray-600">calendar_clock</span>
                     <div>
                         <p class="header-text font-semibold mb-1">Date of Event:</p>
-                        <p class="detail-text">March 3-5, 2025</p>
+                        <p class="detail-text">{{ \Carbon\Carbon::parse($request->start_date)->format('M d') }} - {{ \Carbon\Carbon::parse($request->created_at)->format('d, Y') }}</p>
                     </div>
                 </div>
 
@@ -65,21 +72,21 @@
                     <span class="material-symbols-outlined text-gray-600">location_on</span>
                     <div>
                         <p class="header-text font-semibold mb-1">Location:</p>
-                        <p class="detail-text">Lorem ipsum dolor sit amet</p>
+                        <p class="detail-text">{{ $request->location }}</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3 mb-6">
                     <span class="material-symbols-outlined text-gray-600">group</span>
                     <div>
                         <p class="header-text font-semibold mb-1">No. of Users:</p>
-                        <p class="detail-text">60 users</p>
+                        <p class="detail-text">{{ $request->users }} users</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3 mb-6">
                     <span class="material-symbols-outlined text-gray-600">calendar_clock</span>
                     <div>
                         <p class="header-text font-semibold mb-1">Request Set-up Date:</p>
-                        <p class="detail-text">March 3, 2025 | 12: 00 nn</p>
+                        <p class="detail-text">{{ $request->setup_date }} | {{ $request->setup_time }}</p>
                     </div>
                 </div>
               
@@ -93,8 +100,8 @@
                 <div class="flex items-center gap-3 mb-6">
                     <span class="material-symbols-outlined text-gray-600">manage_accounts</span>
                     <div>
-                        <p class="header-text font-semibold mb-1">Name of Event:</p>
-                        <p class="detail-text">Lorem ipsum dolor sit amet</p>
+                        <p class="header-text font-semibold mb-1">Name of Personnel:</p>
+                        <p class="detail-text">{{ $request->event_name }}</p>
                     </div>
                 </div>
 
@@ -105,8 +112,8 @@
                 <div class="flex items-center gap-3 mb-6">
                     <span class="material-symbols-outlined text-gray-600">home_repair_service</span>
                     <div>
-                        <p class="header-text font-semibold mb-1">Location:</p>
-                        <p class="detail-text">Lorem ipsum dolor sit amet</p>
+                        <p class="header-text font-semibold mb-1">Additional Equipments:</p>
+                        <p class="detail-text">{{ $request->location }}</p>
                     </div>
                 </div>
                
@@ -114,6 +121,7 @@
             </div>
         </div>
     </div>
+    
 </x-app-layout>
 
 <style>

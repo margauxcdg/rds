@@ -30,9 +30,11 @@ Route::post('/requests/store', [RequestController::class, 'store'])->name('reque
 
 
 
-Route::get('/requests-details', function () {
+Route::get('/request-details', function () {
     return view('admin.request-details'); 
 })->middleware(['auth', 'verified'])->name('request-details');
+
+Route::get('/request-details/{id}', [RequestController::class, 'show'])->name('request-details.show');
 
 
 

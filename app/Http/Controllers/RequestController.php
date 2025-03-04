@@ -11,12 +11,16 @@ use Illuminate\Support\Facades\Mail;
 class RequestController extends Controller
 {
     public function index(){
-      
         $requests = Requests::where('status', 'Open')->get(); 
-
         return view('admin.admin-requests', compact('requests'));
     }
+    
 
+    public function show($id) {
+        $request = Requests::findOrFail($id); 
+        return view('admin.request-details', compact('request')); 
+    }
+    
 
     public function store(Request $request){
         $validated = $request->validate([
@@ -47,7 +51,7 @@ class RequestController extends Controller
             'setup_time' => $validated['setup_time'] ?? null,
             'location' => $validated['location'],
             'users' => $validated['users'],
-            'requested_by' => $requestedBy, 
+            'requested_by' => $req, 
             'status' => 'Open',
         ]);
 
