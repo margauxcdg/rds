@@ -10,9 +10,28 @@ use Illuminate\Support\Facades\Mail;
 
 class RequestController extends Controller
 {
+
+   
+
     public function index(){
         $requests = Requests::where('status', 'Open')->get(); 
         return view('admin.admin-requests', compact('requests'));
+    }
+
+    public function userRequest(Request $request) {
+        $userId = auth()->id(); 
+    
+        $status = $request->query('status');
+    
+        $query = Requests::where('requested_by', $userId);
+    
+        if ($status) {
+            $query->where('status', $status);
+        }
+    
+        $requests = $query->get(); 
+    
+        return view('request', compact('requests'));
     }
     
 

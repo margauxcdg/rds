@@ -23,14 +23,3 @@
     </div>
 </div>
 
-<style>
-    .form-container {
-        width: 30rem;
-        z-index: 50;
-        padding: 3rem;
-    }
-
-    .form-header {
-        font-size: 1.5rem;
-    }
-</style>

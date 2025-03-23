@@ -6,17 +6,12 @@
             </button>
         </div>
 
-        <h1 class="form-header mb-5 text-center">Deployment Information</h1>
+        <h1 class="form-header mb-5 text-center">Reason for Cancelation of Request</h1>
 
         <form action="#" method="POST">
             @csrf
             <div class="mb-4">
-                <x-input-label for="personnel" :value="__('Name of Personnel')" />
-                <x-text-input id="personnel" class="block mt-1 w-full" type="text" name="personnel" required />
-            </div>
-            <div class="mb-4">
-                <x-input-label for="equipment" :value="__('Additional Equipment')" />
-                <textarea id="equipment" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="equipment" required></textarea>
+                <textarea id="name" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="name" required></textarea>
             </div>
            
             <div class="mt-4">
@@ -27,5 +22,4 @@
         </form>
     </div>
 </div>
-
 

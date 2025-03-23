@@ -21,13 +21,13 @@ Route::get('/history', function () {
     return view('history');
 })->middleware(['auth', 'verified'])->name('history');
 
+Route::get('/my-requests', [RequestController::class, 'userRequest'])->name('user.requests');
 
 Route::get('requests', [RequestController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('requests');
 
 Route::post('/requests/store', [RequestController::class, 'store'])->name('requests.store');
-
 
 
 Route::get('/request-details', function () {

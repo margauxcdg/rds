@@ -21,12 +21,13 @@
             </li>
             @auth
             <li>
-                <a href="{{ route('history') }}"
-                    class="{{ Route::is('history') ? 'active' : '' }}">
-                    <span class="material-symbols-outlined">history</span>
-                    History
+                <a href="{{ route('user.requests') }}" 
+                    class="{{ request()->routeIs('user.requests', 'request-details.show') ? 'active' : '' }}">
+                    <span class="material-symbols-outlined">description</span>
+                    Requests
                 </a>
             </li>
+           
             @endauth
         
         </ul>

@@ -14,12 +14,10 @@
                 <x-input-label for="representative_name" :value="__('Name of Representative')" />
                 <x-text-input id="representative_name" class="block mt-1 w-full" type="text" name="representative_name" required />
             </div>
-
             <div class="mb-4">
                 <x-input-label for="event_name" :value="__('Name of Event')" />
                 <x-text-input id="event_name" class="block mt-1 w-full" type="text" name="event_name" required />
             </div>
-
             <div class="mb-4">
                 <x-input-label for="purpose" :value="__('Purpose of the Event')" />
                     <select id="purpose" name="purpose" class="block mt-1 w-full rounded-md shadow-sm border-gray-300" onchange="toggleOtherInput()">

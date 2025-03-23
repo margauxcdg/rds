@@ -17,24 +17,34 @@
                 <h2 class="text-3xl font-semibold mb-2">{{ $request->user->name}}</h2> 
                 <p class="text-2xl text-gray-600">{{ $request->representative_name }}</p>
             </div>
+            
             <div class="flex gap-4 items-center">
-                <div x-data="{open:false}">
-                @include('form.deployment-form')
-                    <x-primary-button @click="open = true" style="background-color: #12D707; color: white; width: 100px; height: 40px;">
-                        {{ __('Accept') }}
-                    </x-primary-button>
-                </div>
+                @if(auth()->check() && auth()->user()->email === 'nocs_services@gbox.adnu.edu.ph')
+                    <div x-data="{ open: false }">
+                        @include('form.deployment-form')
+                        <x-primary-button @click="open = true" style="background-color: #12D707; color: white; width: 100px; height: 40px;">
+                            {{ __('Accept') }}
+                        </x-primary-button>
+                    </div>
 
-               
-                
-                <div x-data="{ open: false}">
-                @include('form.decline-form')
-                    <x-primary-button @click="open = true" style="background-color: #D7070B; color: white; width: 100px; height: 40px;">
-                        {{ __('Decline') }}
-                    </x-primary-button>
-                </div>
-                
+                    <div x-data="{ open: false }">
+                        @include('form.decline-form')
+                        <x-primary-button @click="open = true" style="background-color: #D7070B; color: white; width: 100px; height: 40px;">
+                            {{ __('Decline') }}
+                        </x-primary-button>
+                    </div>
+                @else
+                    <div x-data="{ open: false }">
+                        @include('form.cancel-form')
+                        <x-primary-button @click="open = true" style="background-color: #D7070B; color: white; width: 100px; height: 40px;">
+                            {{ __('Cancel') }}
+                        </x-primary-button>
+
+                    
+                    </div>        
+                @endif
             </div>
+
         </div>
        
         <hr class="mb-4">
