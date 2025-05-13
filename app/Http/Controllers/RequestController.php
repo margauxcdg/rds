@@ -22,12 +22,30 @@ class RequestController extends Controller
         $userId = auth()->id(); 
     
         $status = $request->query('status');
+        $dateFilter = $request->query('date_filter');
     
         $query = Requests::where('requested_by', $userId);
     
         if ($status) {
             $query->where('status', $status);
         }
+    
+    
+        if ($dateFilter) {
+            $now = now();
+            if ($dateFilter === '30_days') {
+                $query->where('created_at', '>=', $now->subDays(30));
+            } elseif ($dateFilter === '7_days') {
+                $query->where('created_at', '>=', $now->subDays(7));
+            } elseif ($dateFilter === '24_hours') {
+                $query->where('created_at', '>=', $now->subHours(24));
+            }
+        }
+
+        if ($request->has('specific_date')) {
+            $query->whereDate('created_at', $request->input('specific_date'));
+        }
+        
     
         $requests = $query->get(); 
     

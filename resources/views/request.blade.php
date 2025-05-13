@@ -9,7 +9,7 @@
     </div>
 
     <div class="filter-container flex items-center space-x-4">
-    <div class="filter-tab">
+        <div class="filter-tab">
         <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white px-1 py-1 rounded-md">
             <li class="me-2">
                 <a href="{{ route('user.requests') }}" 
@@ -42,7 +42,52 @@
                 </a>
             </li>
         </ul>
+       
     </div>
+
+    <div class="filter-container flex items-center space-x-4"> 
+    <div class="filter-tab">
+            <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white px-1 py-1 rounded-md">
+                <li class="me-2">
+                    <a href="{{ route('user.requests', array_merge(request()->query(), ['date_filter' => null])) }}" 
+                       class="inline-block px-3 py-2 rounded-lg {{ request('date_filter') ? 'hover:bg-gray-100' : 'bg-blue-600 text-white' }}">
+                       All Time
+                    </a>
+                </li>
+                <li class="me-2">
+                    <a href="{{ route('user.requests', array_merge(request()->query(), ['date_filter' => '30_days'])) }}" 
+                       class="inline-block px-3 py-2 rounded-lg {{ request('date_filter') == '30_days' ? 'bg-blue-600 text-white' : 'hover:bg-gray-100' }}">
+                       30 Days
+                    </a>
+                </li>
+                <li class="me-2">
+                    <a href="{{ route('user.requests', array_merge(request()->query(), ['date_filter' => '7_days'])) }}" 
+                       class="inline-block px-3 py-2 rounded-lg {{ request('date_filter') == '7_days' ? 'bg-blue-600 text-white' : 'hover:bg-gray-100' }}">
+                       7 Days
+                    </a>
+                </li>
+                <li class="me-2">
+                    <a href="{{ route('user.requests', array_merge(request()->query(), ['date_filter' => '24_hours'])) }}" 
+                       class="inline-block px-3 py-2 rounded-lg {{ request('date_filter') == '24_hours' ? 'bg-blue-600 text-white' : 'hover:bg-gray-100' }}">
+                       24 Hours
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="calendar-tab bg-white px-3 py-2 flex items-center space-x-3 rounded-md">
+            <form action="{{ route('user.requests') }}" method="GET">
+            <input type="date" name="specific_date" value="{{ request('specific_date') }}" 
+       class="px-2 py-1 text-sm text-gray-600 bg-transparent focus:outline-none focus:ring-0 border-0">
+
+                
+                @foreach(request()->except('specific_date') as $key => $value)
+                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                @endforeach
+            </form>
+        </div>
+    </div>
+
 </div>
 
 
