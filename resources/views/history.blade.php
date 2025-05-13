@@ -10,35 +10,49 @@
         </div>
     </div>
 
-    <div class="filter-container flex items-center space-x-4">
-        <!-- Filter Tabs -->
-        <div class="filter-tab">
+   <div class="filter-container flex items-center space-x-4"> 
+    <div class="filter-tab">
             <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white px-1 py-1 rounded-md">
                 <li class="me-2">
-                    <a href="#" class="inline-block px-3 py-2 text-white bg-blue-600 rounded-lg active" aria-current="page">All time</a>
+                    <a href="{{ route('user.requests', array_merge(request()->query(), ['date_filter' => null])) }}" 
+                       class="inline-block px-3 py-2 rounded-lg {{ request('date_filter') ? 'hover:bg-gray-100' : 'bg-blue-600 text-white' }}">
+                       All Time
+                    </a>
                 </li>
                 <li class="me-2">
-                    <a href="#" class="inline-block px-3 py-2 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">30 days</a>
+                    <a href="{{ route('user.requests', array_merge(request()->query(), ['date_filter' => '30_days'])) }}" 
+                       class="inline-block px-3 py-2 rounded-lg {{ request('date_filter') == '30_days' ? 'bg-blue-600 text-white' : 'hover:bg-gray-100' }}">
+                       30 Days
+                    </a>
                 </li>
                 <li class="me-2">
-                    <a href="#" class="inline-block px-3 py-2 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">7 days</a>
+                    <a href="{{ route('user.requests', array_merge(request()->query(), ['date_filter' => '7_days'])) }}" 
+                       class="inline-block px-3 py-2 rounded-lg {{ request('date_filter') == '7_days' ? 'bg-blue-600 text-white' : 'hover:bg-gray-100' }}">
+                       7 Days
+                    </a>
                 </li>
                 <li class="me-2">
-                    <a href="#" class="inline-block px-3 py-2 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">24 hours</a>
+                    <a href="{{ route('user.requests', array_merge(request()->query(), ['date_filter' => '24_hours'])) }}" 
+                       class="inline-block px-3 py-2 rounded-lg {{ request('date_filter') == '24_hours' ? 'bg-blue-600 text-white' : 'hover:bg-gray-100' }}">
+                       24 Hours
+                    </a>
                 </li>
             </ul>
         </div>
 
-        <!-- Calendar Filter -->
-        <div class="calendar-tab bg-white px-3 py-2 rounded-md flex items-center space-x-3">
-            <span class="material-symbols-outlined text-gray-500 dark:text-gray-400">
-                calendar_today
-            </span>
-            <span class="text-gray-600 dark:text-gray-300 text-sm font-medium">
-                Select Date
-            </span>
+        <div class="calendar-tab bg-white px-3 py-2 flex items-center space-x-3 rounded-md">
+            <form action="{{ route('user.requests') }}" method="GET">
+            <input type="date" name="specific_date" value="{{ request('specific_date') }}" 
+       class="px-2 py-1 text-sm text-gray-600 bg-transparent focus:outline-none focus:ring-0 border-0">
+
+                
+                @foreach(request()->except('specific_date') as $key => $value)
+                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                @endforeach
+            </form>
         </div>
     </div>
+
 
     <div class="request-history-list p-4 rounded-tr-lg rounded-tl-lg ">
         <div class="head bg-blue-100 p-3 rounded-tr-lg rounded-tl-lg">

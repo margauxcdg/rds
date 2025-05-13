@@ -13,10 +13,43 @@ class RequestController extends Controller
 
    
 
-    public function index(){
+       public function index(){
         $requests = Requests::where('status', 'Open')->get(); 
         return view('admin.admin-requests', compact('requests'));
     }
+
+
+    public function adminRequest(Request $request){
+         $status = $request->query('status');
+        $dateFilter = $request->query('date_filter');
+        $specificDate = $request->query('specific_date');
+
+        $query = Requests::query(); // All requests, not limited by user
+
+        if ($status) {
+            $query->where('status', $status);
+        }
+
+        if ($dateFilter) {
+            $now = now();
+            if ($dateFilter === '30_days') {
+                $query->where('created_at', '>=', $now->subDays(30));
+            } elseif ($dateFilter === '7_days') {
+                $query->where('created_at', '>=', $now->subDays(7));
+            } elseif ($dateFilter === '24_hours') {
+                $query->where('created_at', '>=', $now->subHours(24));
+            }
+        }
+
+        if ($specificDate) {
+            $query->whereDate('created_at', $specificDate);
+        }
+
+        $requests = $query->get(); 
+    
+        return view('admin.admin-requests', compact('requests'));
+    }
+
 
     public function userRequest(Request $request) {
         $userId = auth()->id(); 

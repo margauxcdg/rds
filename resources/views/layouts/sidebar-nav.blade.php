@@ -67,13 +67,13 @@
 
                     @auth
                     <li class="px-4 py-2 hover:bg-gray-100">
-                        <a href="#" 
-                            class="flex justify-between items-center w-full rounded-md text-black cursor-pointer ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                            @click.stop>
+                        <a href="{{ route('password.request') }}" 
+                            class="flex justify-between items-center w-full rounded-md text-black cursor-pointer ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             <span>Change Password</span>
                             <span class="material-symbols-outlined">lock</span>
                         </a>
                     </li>
+
 
                     <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                         <form method="POST" action="{{ route('logout') }}" class="flex justify-between items-center w-full">

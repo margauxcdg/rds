@@ -21,6 +21,8 @@ Route::get('/history', function () {
     return view('history');
 })->middleware(['auth', 'verified'])->name('history');
 
+
+
 Route::get('/my-requests', [RequestController::class, 'userRequest'])->name('user.requests');
 
 Route::get('requests', [RequestController::class, 'index'])
@@ -29,6 +31,7 @@ Route::get('requests', [RequestController::class, 'index'])
 
 Route::post('/requests/store', [RequestController::class, 'store'])->name('requests.store');
 
+Route::get('admin.requests', [RequestController::class, 'adminRequest'])->name('admin.requests');
 
 Route::get('/request-details', function () {
     return view('admin.request-details'); 
