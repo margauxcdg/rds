@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('location');
             $table->integer('users');
             $table->foreignId('requested_by')->constrained('users')->onDelete('cascade'); 
-            $table->enum('status', ['Open', 'In Progress', 'Closed', 'Declined'])->default('Open');
+            $table->enum('status', ['Open', 'In Progress', 'Closed', 'Declined', 'Canceled'])->default('Open');
             $table->timestamps();
         });
     }

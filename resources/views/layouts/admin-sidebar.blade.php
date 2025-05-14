@@ -27,13 +27,7 @@
                 Requests
             </a>
         </li>
-        <li>
-            <a href="{{ route('history') }}"
-                class="{{ Route::is('history') ? 'active' : '' }}">
-            <span class="material-symbols-outlined">
-                history
-            </span>History</a>
-        </li>
+       
 
     </ul>
 

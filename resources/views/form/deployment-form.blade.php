@@ -8,15 +8,15 @@
 
         <h1 class="form-header mb-5 text-center">Deployment Information</h1>
 
-        <form action="#" method="POST">
+        <form action="{{ route('requests.accept', $request->id) }}" method="POST">
             @csrf
             <div class="mb-4">
-                <x-input-label for="personnel" :value="__('Name of Personnel')" />
-                <x-text-input id="personnel" class="block mt-1 w-full" type="text" name="personnel" required />
+                <x-input-label for="personnel_name" :value="__('Name of Personnel')" />
+                <x-text-input id="personnel_name" class="block mt-1 w-full" type="text" name="personnel_name" required />
             </div>
             <div class="mb-4">
-                <x-input-label for="equipment" :value="__('Additional Equipment')" />
-                <textarea id="equipment" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="equipment" required></textarea>
+                <x-input-label for="other_equipments" :value="__('Additional Equipment')" />
+                <textarea id="other_equipments" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="other_equipments" required></textarea>
             </div>
            
             <div class="mt-4">

@@ -50,6 +50,8 @@
 
 
 <script>
+  const scheduledRequests = @json($scheduledRequests);
+
   document.addEventListener('DOMContentLoaded', () => {
   const calendarTitle = document.getElementById('calendar-title');
   const calendarDays = document.getElementById('calendar-days');
@@ -59,53 +61,59 @@
   let currentDate = new Date();
 
   function renderCalendar(date) {
-    calendarDays.innerHTML = '';
+  calendarDays.innerHTML = '';
 
-    const monthNames = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-    
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const today = new Date();
-    const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
 
-    calendarTitle.textContent = `${monthNames[month]} ${year}`;
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const today = new Date();
+  const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
 
-    const firstDayOfMonth = new Date(year, month, 1).getDay();
-    const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
-    const lastDayOfPrevMonth = new Date(year, month, 0).getDate();
+  calendarTitle.textContent = `${monthNames[month]} ${year}`;
 
-   
-    for (let i = firstDayOfMonth; i > 0; i--) {
-      calendarDays.innerHTML += `<div class="flex p-3.5 bg-gray-50 border-r border-b border-indigo-200 text-xs font-semibold text-gray-400">${lastDayOfPrevMonth - i + 1}</div>`;
-    }
+  const firstDayOfMonth = new Date(year, month, 1).getDay();
+  const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
+  const lastDayOfPrevMonth = new Date(year, month, 0).getDate();
+
+  // Fill in previous month's days
+  for (let i = firstDayOfMonth; i > 0; i--) {
+    calendarDays.innerHTML += `<div class="flex p-3.5 bg-gray-50 border-r border-b border-indigo-200 text-xs font-semibold text-gray-400">${lastDayOfPrevMonth - i + 1}</div>`;
+  }
+
+  // Main days
+for (let day = 1; day <= lastDateOfMonth; day++) {
+  const isToday = isCurrentMonth && day === today.getDate();
+  const displayDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+  const eventsToday = scheduledRequests.filter(ev => ev.date === displayDate);
+
+  let eventsHtml = '';
+  eventsToday.forEach(ev => {
+    eventsHtml += `<div class="mt-5 text-xs text-blue-600 font-medium truncate">${ev.event_name}</div>`;
+  });
+
+  calendarDays.innerHTML += `
+    <div class="relative border-r border-b border-blue-200 text-xs font-semibold flex flex-col items-start justify-start p-2">
+      <span class="absolute top-1 left-2 ${isToday ? 'bg-blue-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center' : ''}">
+        ${day}
+      </span>
+      ${eventsHtml}
+    </div>`;
+}
 
 
-    for (let day = 1; day <= lastDateOfMonth; day++) {
-        const isToday = isCurrentMonth && day === today.getDate();
-        const dayClass = isToday 
-          ? "flex items-center justify-center" 
-          : "bg-white text-gray-900 cursor-pointer hover:bg-blue-50 transition-all duration-300";
+  // Fill next month's extra cells
+  const totalCells = firstDayOfMonth + lastDateOfMonth;
+  const nextDays = totalCells <= 35 ? 35 - totalCells : 42 - totalCells;
 
-          calendarDays.innerHTML += `
-            <div class="relative border-r border-b border-blue-200 text-xs font-semibold flex items-start justify-start p-2">
-              <span class="absolute top-1 left-2 ${isToday ? 'bg-blue-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center' : ''}">
-                ${day}
-              </span>
-            </div>`;
-
-          }
-
-        
-          const totalCells = firstDayOfMonth + lastDateOfMonth;
-          const nextDays = totalCells <= 35 ? 35 - totalCells : 42 - totalCells;
-
-          for (let i = 1; i <= nextDays; i++) {
-            calendarDays.innerHTML += `<div class="flex p-3.5 bg-gray-50 border-r border-b border-indigo-200 text-xs text-gray-400">${i}</div>`;
-          }
-      }
+  for (let i = 1; i <= nextDays; i++) {
+    calendarDays.innerHTML += `<div class="flex p-3.5 bg-gray-50 border-r border-b border-indigo-200 text-xs text-gray-400">${i}</div>`;
+  }
+}
 
 
   prevMonthBtn.addEventListener('click', () => {

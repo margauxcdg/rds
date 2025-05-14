@@ -3,10 +3,11 @@
         <div class="header">
             <h1 class="flex items-center gap-2 text-3xl">
                 <span class="material-symbols-outlined text-2xl">description</span> 
-                Pending Requests
+                Requests
             </h1>
         </div>
     </div>
+    
 
      <div class="filter-container flex items-center space-x-4">
         <div class="filter-tab">

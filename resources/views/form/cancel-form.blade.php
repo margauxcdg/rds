@@ -8,10 +8,10 @@
 
         <h1 class="form-header mb-5 text-center">Reason for Cancelation of Request</h1>
 
-        <form action="#" method="POST">
+        <form action="{{ route('requests.cancel', $request->id) }}" method="POST">
             @csrf
             <div class="mb-4">
-                <textarea id="name" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="name" required></textarea>
+                <textarea id="cancel_reason" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="cancel_reason" required></textarea>
             </div>
            
             <div class="mt-4">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('dashboard'); 
@@ -13,9 +14,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/admin-dashboard', function () {
-    return view('admin.admin-dashboard');
-})->middleware(['auth', 'verified'])->name('admin-dashboard');
+Route::get('/admin-dashboard', [DashboardController::class, 'showDashboard'])
+    ->middleware(['auth', 'verified'])
+    ->name('admin-dashboard');
 
 Route::get('/history', function () {
     return view('history');
@@ -38,6 +39,17 @@ Route::get('/request-details', function () {
 })->middleware(['auth', 'verified'])->name('request-details');
 
 Route::get('/request-details/{id}', [RequestController::class, 'show'])->name('request-details.show');
+
+Route::post('/requests/{id}/accept', [RequestController::class, 'accept'])->name('requests.accept');
+
+Route::post('/requests/{id}/complete', [RequestController::class, 'complete'])->name('requests.complete');
+Route::post('/requests/{id}/decline', [RequestController::class, 'decline'])->name('requests.decline');
+Route::post('/requests/{id}/cancel', [RequestController::class, 'cancel'])->name('requests.cancel');
+
+
+
+
+
 
 
 

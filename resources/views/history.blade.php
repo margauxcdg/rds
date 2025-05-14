@@ -76,29 +76,28 @@
                 </div>
             </div>      
         </div>
-        <div class="request-row  bg-white hover:bg-blue-60 rounded-br-lg rounded-bl-lg border  border-gray-200 transition duration-200">
-            <div class="row flex justify-between items-center space-x-4 p-2">
-                <div class="col w-1/6">
-                    <p class="text-gray-600 text-center">#001</p>
-                </div>
-                <div class="col w-2/6">
-                    <p class="text-gray-700 text-center">Intramurals 2025</p>
-                </div>
-                <div class="col w-1/6">
-                    <p class="text-gray-600 text-center">Jan 20, 2025</p>
-                </div>
-                <div class="col w-1/6">
-                    <p class="text-gray-600 text-center">Join</p>
-                </div>
-                <div class="col w-1/6">
-                    <p class="text-green-600 font-semibold text-center">Approved</p>
+        $requests = Requests::where('status', 'Completed')->get();
+
+        @foreach ($requests as $request)
+            <div class="request-row bg-white hover:bg-blue-50 border border-gray-200 transition duration-200">
+                <div class="row flex justify-between items-center space-x-4 p-2">
+                    <div class="col w-1/6"><p class="text-gray-600 text-center">#{{ $request->id }}</p></div>
+                    <div class="col w-2/6 justify-center flex">
+                        <a href="{{ route('request-details.show', $request->id) }}" class="text-gray-600 text-center">
+                            {{ $request->event_name }}
+                        </a>
+                    </div>
+                    <div class="col w-1/6"><p class="text-gray-600 text-center">{{ \Carbon\Carbon::parse($request->created_at)->format('M d, Y') }}</p></div>
+                    <div class="col w-1/6"><p class="text-gray-600 text-center">{{ $request->purpose }}</p></div>
+                    <div class="col w-1/6">
+                        <span class="px-3 py-1 rounded-full font-semibold flex justify-center items-center {{ $statusColors[$request->status] }}">
+                            {{ $request->status }}
+                        </span>
+                    </div>
                 </div>
             </div>
+        @endforeach
 
-      
-
-   
-    </div>
 </x-app-layout>
 
 <style>

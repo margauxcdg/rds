@@ -24,7 +24,7 @@ class RequestController extends Controller
         $dateFilter = $request->query('date_filter');
         $specificDate = $request->query('specific_date');
 
-        $query = Requests::query(); // All requests, not limited by user
+        $query = Requests::query(); 
 
         if ($status) {
             $query->where('status', $status);
@@ -90,6 +90,65 @@ class RequestController extends Controller
         $request = Requests::findOrFail($id); 
         return view('admin.request-details', compact('request')); 
     }
+
+    public function accept(Request $request, $id)
+    {
+        $deploymentRequest = Requests::findOrFail($id); 
+
+        $deploymentRequest->personnel_name = $request->personnel_name;
+        $deploymentRequest->other_equipments = $request->other_equipments;
+        $deploymentRequest->status = 'In Progress';
+
+        $deploymentRequest->save();
+
+        return redirect()->back()->with('success', 'Request updated successfully.');
+    }
+
+    public function complete($id)
+    {
+        $requestRecord = Requests::findOrFail($id); 
+        if( $requestRecord->status === 'In Progress'){
+            $requestRecord->status = 'Closed';
+            $requestRecord->save();
+        }
+       
+       
+
+        return redirect()->back()->with('success', 'Request marked as completed.');
+    }
+
+    public function decline(Request $request, $id)
+    {
+        $requestRecord = Requests::findOrFail($id);
+
+        if ($requestRecord->status === 'Open') {
+            $requestRecord->status = 'Declined';
+            $requestRecord->decline_reason = $request->input('decline_reason');
+            $requestRecord->save();
+        }
+
+        return redirect()->back()->with('success', 'Request declined with reason.');
+    }
+
+
+    public function cancel(Request $request, $id)
+    {
+        $requestRecord = Requests::findOrFail($id);
+
+        if ($requestRecord->status === 'Open') {
+            $requestRecord->status = 'Declined';
+            $requestRecord->cancel_reason = $request->input('cancel_reason');
+            $requestRecord->save();
+        }
+
+        return redirect()->back()->with('success', 'Request cancel with reason.');
+    }
+
+
+
+
+
+
     
 
     public function store(Request $request){
@@ -103,7 +162,7 @@ class RequestController extends Controller
             'setup_date' => 'nullable|date',
             'setup_time' => 'nullable',
             'location' => 'required|string',
-            'users' => 'required|integer'
+            'users' => 'required|integer',
         ]);
 
         $requestedBy = auth()->id(); 
@@ -121,9 +180,14 @@ class RequestController extends Controller
             'setup_time' => $validated['setup_time'] ?? null,
             'location' => $validated['location'],
             'users' => $validated['users'],
-            'requested_by' => $req, 
+            'requested_by' => $requestedBy,
             'status' => 'Open',
+            'personnel_name' => $validated['personnel_name'] ?? null,
+            'other_equipments' => $validated['other_equipments'] ?? null,
+            'decline_reason' => $validated['decline_reason'] ?? null,
+            'cancel_reason' => $validated['cancel_reason'] ?? null,
         ]);
+
 
         $requestData = $validated;
         $requestData['requested_by'] = $userName;
